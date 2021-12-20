@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>git操作 | 淼淼博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967885576">
+<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="准备配置
+
+去github（码云）上根据网站的提示来创建自己的远程Repository（仓库）
+$ git init # （建立本地git仓库）——注意：此指令本地源码根目录执行，执行成功后，会在当前目录生成一个隐藏的名字为“.git”的目..." />
+    <meta name="keywords" content="Git" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wzhjm.vercel.app">
+        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967885576" class="site-logo">
+        <h1 class="site-title">淼淼博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/wzhjm" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      淼淼博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">git操作</h2>
+            <div class="post-date">2021-12-20</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="准备配置">准备配置</h1>
+<ul>
+<li>去github（码云）上根据网站的提示来创建自己的远程Repository（仓库）</li>
+<li>$ git init # （建立本地git仓库）——注意：此指令本地源码根目录执行，执行成功后，会在当前目录生成一个隐藏的名字为“.git”的目录。所有对本地仓库的操作信息都在此目录下存储。</li>
+<li>$ git remote add origin https://xxx@xx.git # （将本地的仓库关联到GitHub（码云）上对应的仓库，后面的https链接改成GitHub（码云）上对应的仓库的.git地址）</li>
+<li>$ git fetch</li>
+<li>$ git branch master origin/master</li>
+<li>$ git checkout master</li>
+</ul>
+<h1 id="提交代码">提交代码</h1>
+<ul>
+<li>$ git add . # （将项目的所有文件添加到本地仓库中）——说明：此处的“.”表示当前所有目录，如果只添加某些目录，则使用：git add [目录1] [目录2]。</li>
+<li>$ git commit -m “新添加的文件内容描述” # 添加文件描述</li>
+<li>$ git push -u origin master #将本地仓库推送到远程仓库</li>
+</ul>
+<h1 id="git常用命令">git常用命令</h1>
+<ul>
+<li>$ git clone [address] # 复制代码库到本地</li>
+<li>$ git add [file] … # 添加文件到代码库中</li>
+<li>$ git rm [file] … # 删除代码库的文件</li>
+<li>$ git commit -m [message] # 提交更改，在修改了文件以后，使用这个命令提交修改</li>
+<li>$ git pull # 从远程同步代码库到本地。（例如：git pull origin master ）——说明：此处的使用origin是因为第三步在建立本地仓库时git init 指令后面没有给本地仓库命名，因此origin为缺省的名字。如果在执行git init时添加了自定义名字，请使用自定义名字。本地仓库的名字没有要求非得和远程仓库名字相同。（此处的使用master是因为远程仓库的master分支，如果想上传到其它分支，此处改为指定分支名称即可）</li>
+<li>$ git push # 推送代码到远程代码库。（例如：git push -u origin master）——说明：如果没有保存github（码云）的登录账号和密码， 再执行此指令后会提示输入Username和Password，输入正确的github（码云）的登录账号和密码之后就会上传之前提交的代码</li>
+<li>$ git branch # 查看当前分支。带*是当前分支</li>
+<li>$ git branch [branch-name] # 新建一个分支</li>
+<li>$ git branch -d [branch-name] # 删除一个分支</li>
+<li>$ git checkout [branch-name] # 切换到指定分支</li>
+<li>$ git log # 查看提交记录（即历史的 commit 记录）</li>
+<li>$ git status # 当前修改的状态，是否修改了还没提交，或者那些文件未使用</li>
+<li>$ git reset [log] # 恢复到历史版本</li>
+</ul>
+<h1 id="更新代码">更新代码</h1>
+<ul>
+<li>查看本地代码和本地仓库中代码的区别<br>
+$ git status</li>
+<li>确认无误后更新全部修改到本地仓库<br>
+$ git add *</li>
+<li>提交修改<br>
+$ git commit -m “说明信息”</li>
+<li>获取远程仓库指定分支的最新代码<br>
+$ git pull origin master</li>
+<li>上传到远程仓库指定分支上<br>
+$ git push origin maste</li>
+</ul>
+<h1 id="进行多人协作开发">进行多人协作开发</h1>
+<ul>
+<li>先由项目负责人创建仓库。</li>
+<li>邀请成为仓库管理员。</li>
+<li>在桌面创建的新文件中打开git Bash</li>
+<li>git clone 仓库地址</li>
+<li>开始编辑自己的代码。</li>
+<li>git checkout -b 分支名</li>
+<li>git add .</li>
+<li>git commit -m ‘描述’</li>
+<li>git push origin 分支名</li>
+<li>git checkout master切换到主分支</li>
+<li>git pull origin 分支名 。打开代码运行查看是否能正常运行，如有错误需要手动修- 改。</li>
+<li>冲突解决后再 git push origin 主分支</li>
+<li>打开码云刷新个人主页查看一下有没有推送成功</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wzhjm.vercel.app/tag/2jkaWIQ0qi/" class="tag">
+                    Git
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wzhjm.vercel.app/post/是否换行/">
+                  <h3 class="post-title">
+                    是否换行
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

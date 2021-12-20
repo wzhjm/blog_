@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>hexo+yilia添加复制代码块功能 | 淼淼博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967885576">
+<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="第一步
+在themes\yilia\source中新建js文件夹，在该文件夹中新建clipboard_use.js如下
+$(&quot;.highlight&quot;).wrap(&quot;&lt;div class='code-wra..." />
+    <meta name="keywords" content="Hexo" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wzhjm.vercel.app">
+        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967885576" class="site-logo">
+        <h1 class="site-title">淼淼博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/wzhjm" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      淼淼博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">hexo+yilia添加复制代码块功能</h2>
+            <div class="post-date">2021-12-16</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="第一步">第一步</h1>
+<p>在themes\yilia\source中新建js文件夹，在该文件夹中新建clipboard_use.js如下</p>
+<pre><code>$(&quot;.highlight&quot;).wrap(&quot;&lt;div class='code-wrapper' style='position:relative'&gt;&lt;/div&gt;&quot;);
+/*页面载入完成后，创建复制按钮*/
+!function (e, t, a) {
+    /* code */
+    var initCopyCode = function () {
+        var copyHtml = '';
+        copyHtml += '&lt;button class=&quot;btn-copy&quot; data-clipboard-snippet=&quot;&quot;&gt;';
+        copyHtml += '  &lt;i class=&quot;fa fa-clipboard&quot;&gt;&lt;/i&gt;&lt;span&gt;复制&lt;/span&gt;';
+        copyHtml += '&lt;/button&gt;';
+        $(&quot;.highlight .code&quot;).before(copyHtml);
+        var clipboard = new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+                return trigger.nextElementSibling;
+            }
+        });
+        clipboard.on('success', function (e) {
+            e.trigger.innerHTML = &quot;&lt;i class='fa fa-clipboard'&gt;&lt;/i&gt;&lt;span&gt;复制成功&lt;/span&gt;&quot;
+            setTimeout(function () {
+                e.trigger.innerHTML = &quot;&lt;i class='fa fa-clipboard'&gt;&lt;/i&gt;&lt;span&gt;复制&lt;/span&gt;&quot;
+            }, 1000)
+           
+            e.clearSelection();
+        });
+        clipboard.on('error', function (e) {
+            e.trigger.innerHTML = &quot;&lt;i class='fa fa-clipboard'&gt;&lt;/i&gt;&lt;span&gt;复制失败&lt;/span&gt;&quot;
+            setTimeout(function () {
+                e.trigger.innerHTML = &quot;&lt;i class='fa fa-clipboard'&gt;&lt;/i&gt;&lt;span&gt;复制&lt;/span&gt;&quot;
+            }, 1000)
+            e.clearSelection();
+        });
+    }
+    initCopyCode();
+}(window, document);
+</code></pre>
+<h1 id="第二步">第二步</h1>
+<p>在themes\yilia\layout\layout.ejs 文件的结尾处 </body> （注意这个是body的结束标签）前插入如下代码：</p>
+<pre><code>&lt;!-- 代码块复制功能开始 --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/clipboard_use.js&quot;&gt;&lt;/script&gt;
+&lt;!-- 代码块复制功能结束 --&gt;
+</code></pre>
+<h1 id="第三步">第三步</h1>
+<p>在themes\yilia\source\main.0cf68a.css 最末尾添加如下代码：</p>
+<pre><code>.btn-copy {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    background-color: #515151;
+    border: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #d5d5d5;
+    -webkit-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    padding: 2px 6px;
+}
+
+.btn-copy span {
+    margin-left: 5px
+}
+
+.code-wrapper .btn-copy:hover {
+    color: #fff;
+}
+</code></pre>
+<h1 id="结果展示如图">结果展示如图</h1>
+<figure data-type="image" tabindex="1"><img src="https://wzhjm.vercel.app/post-images/1639966517978.png" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wzhjm.vercel.app/tag/6PxwREWPpM/" class="tag">
+                    Hexo
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wzhjm.vercel.app/post/hexo-yilia添加URL持久化/">
+                  <h3 class="post-title">
+                    hexo+yilia添加URL持久化
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

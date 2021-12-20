@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Hexo使用和Markdown语法笔记 | 淼淼博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967885576">
+<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="命令
+配置
+npm install hexo -g //安装
+
+npm update hexo -g //升级
+
+hexo g // = hexo generate 生成
+
+hexo s // = hexo server 本地服务预览
+
+h..." />
+    <meta name="keywords" content="Hexo" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wzhjm.vercel.app">
+        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967885576" class="site-logo">
+        <h1 class="site-title">淼淼博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/wzhjm" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      淼淼博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Hexo使用和Markdown语法笔记</h2>
+            <div class="post-date">2021-12-15</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="命令">命令</h1>
+<h1 id="配置">配置</h1>
+<pre><code>npm install hexo -g //安装
+
+npm update hexo -g //升级
+
+hexo g // = hexo generate 生成
+
+hexo s // = hexo server 本地服务预览
+
+hexo s -p xxxx // 更改本地端口
+
+hexo d // = hexo deploy 部署
+*下载了豆瓣插件 即不可使用 hexo d
+
+hexo d -g // = hexo g -d 生成后部署
+
+hexo clean //清缓存
+</code></pre>
+<h1 id="博客">博客</h1>
+<pre><code>hexo new post &quot;xxx&quot;
+
+hexo new page xxx
+
+hexo new photo &quot;xxx&quot;
+</code></pre>
+<h1 id="写作">写作</h1>
+<pre><code>---
+title:     // 文章标题
+date:   // 创建日期
+updated:  // 更新日期
+tags:    
+   - a
+   - b   // 标签
+categories: 
+   - a
+   - b  // 分类
+keywords:  // 关键字
+description: // 在主页描述、若不选自动节选
+cover:  // 主页缩略图
+top_img:  // 顶部图片 （链接）
+// *若未设置 top_img，则使用 cover图，没 cover则默认图
+comments：// 评论开启（true/false）、默认true
+---
+</code></pre>
+<h3 id="一定要用小写否则无法识别">一定要用小写，否则无法识别</h3>
+<h1 id="提示块标签">提示块标签</h1>
+<p>标签不是Markdown标准格式，为hexo特有，且以下写法只是用Next等主题下</p>
+<pre><code>{% note default %}
+default 提示块标签
+{% endnote %}
+
+{% note primary no-icon %}  //可使用语法 no-icon去掉小图标
+primary 提示块标签
+{% endnote %}
+
+{% note success %}
+success 提示块标签
+{% endnote %}
+
+{% note info %}
+info 提示块标签
+{% endnote %}
+
+{% note warning %}
+warning 提示块标签
+{% endnote %}
+
+{% note danger %}
+danger 提示块标签
+{% endnote %}
+</code></pre>
+<h1 id="markdown">Markdown</h1>
+<h2 id="一-标题">一、标题</h2>
+<pre><code># 一级标题
+...
+###### 六级最小
+</code></pre>
+<h2 id="二-主要">二、主要</h2>
+<pre><code>**1加粗**
+*2斜体*
+***3加粗+斜体***
+~~4删除线~~
+^5^上标
+~6~下标
+1. 有序列表
+2. 有序列表
+- 无序列表
++ 无序列表
+* 无序列表
+</code></pre>
+<h3 id="字体处理中语法和文本不能加空格">字体处理中语法和文本不能加空格</h3>
+<h1 id="其它">其它</h1>
+<h2 id="表格">表格</h2>
+<pre><code>| 表头 | 表头  | 表头 |
+| ---- | :---: | ---: |//默认居左，:居中:，居右:
+内容|内容|内容
+内容|内容|内容
+1|2|3
+</code></pre>
+<h1 id="插入代码">插入代码</h1>
+<pre><code> (```此处写语言
+  代码...
+ ```)
+</code></pre>
+<h3 id="为防止编译加了实际使用中没有">为防止编译加了（），实际使用中没有（ ）</h3>
+<h1 id="引用">引用</h1>
+<pre><code>&gt;引用
+</code></pre>
+<h1 id="图片链接">图片/链接</h1>
+<pre><code>[QQ](https://im.qq.com/)
+![图片](xxxx)  //xxxx为图片链接
+</code></pre>
+<h1 id="图片还可插入html标签">图片还可插入Html标签</h1>
+<pre><code>&lt;img src=&quot;xxxx&quot; style=&quot;zoom:80%&quot; &gt; //zoom可定图片大小比例，部分平台不支持
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wzhjm.vercel.app/tag/6PxwREWPpM/" class="tag">
+                    Hexo
+                  </a>
+                
+              </div>
+            
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

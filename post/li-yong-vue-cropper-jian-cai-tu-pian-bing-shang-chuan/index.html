@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>利用vue-cropper剪裁图片并上传 | 淼淼博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967885576">
+<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="因为需求所以利用vue的插件vue-cropper进行图片剪裁。
+安装
+npm install vue-cropper
+使用
+import VueCropper from vue-cropper
+效果图
+
+此次主要是利用Element-ui..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wzhjm.vercel.app">
+        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967885576" class="site-logo">
+        <h1 class="site-title">淼淼博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/wzhjm" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      淼淼博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">利用vue-cropper剪裁图片并上传</h2>
+            <div class="post-date">2021-12-20</div>
+            
+            <div class="post-content" v-pre>
+              <p>因为需求所以利用vue的插件vue-cropper进行图片剪裁。</p>
+<h1 id="安装">安装</h1>
+<p><code>npm install vue-cropper</code></p>
+<h1 id="使用">使用</h1>
+<p><code>import VueCropper from vue-cropper</code></p>
+<h1 id="效果图">效果图</h1>
+<figure data-type="image" tabindex="1"><img src="https://wzhjm.vercel.app/post-images/1639966410263.png" alt="" loading="lazy"></figure>
+<p>此次主要是利用Element-ui+vue-cropper完成此需求,话不多说上代码。</p>
+<pre><code>&lt;div&gt;
+    &lt;el-upload
+        :action=&quot;''&quot;
+        list-type=&quot;picture-card&quot;
+        :file-list=&quot;MastergraphPicList&quot;
+        :limit=&quot;10&quot;
+        :on-change='changeUpload'
+        :auto-upload=&quot;false&quot;
+        :show-file-list=&quot;isFlag&quot;
+        :http-request=&quot;ServiceUpLoad&quot;
+        :on-success=&quot;(response,file,fileList) =&gt; handlePostSuccess(response,file,fileList)&quot;
+        :on-remove=&quot;(response,file,fileList) =&gt; handleDelete(response,file,fileList)&quot;
+        &gt;
+        &lt;i class=&quot;el-icon-plus&quot;&gt;&lt;/i&gt;
+        &lt;div slot=&quot;tips&quot; class=&quot;el-upload__tip&quot;&gt;支持jpg、jpge、png格式，大小不超过2m，限10张&lt;/div&gt;
+    &lt;/el-upload&gt;
+&lt;/div&gt;
+</code></pre>
+<p>上传图片时会触发changeUpload此钩子函数，由于剪裁图片是以弹框形式唤起，因此我们的行为可以在此钩子函数中写。</p>
+<pre><code>    changeUpload(file, fileList) {
+        &lt;!--限制文件格式、大小--&gt;
+        const isLt2M = file.size / 1024 / 1024 &lt; 2
+        if (!isLt2M) {
+            this.$message.error('上传文件大小不能超过 2MB!')
+            return false
+        }
+        &lt;!--写入回显列表--&gt;
+        this.MastergraphPicList.push(file);
+        &lt;!--触发子级方法，唤起剪裁框--&gt;
+        this.$children[0].isShow();
+    },
+</code></pre>
+<p>剪裁框模板 cropper.vue</p>
+<pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;el-dialog title=&quot;图片剪裁&quot; :visible.sync=&quot;dialogVisible&quot; append-to-body&gt;
+        &lt;div class=&quot;cropper-content&quot;&gt;
+            &lt;div class=&quot;cropper&quot; style=&quot;text-align:center&quot;&gt;
+            &lt;vueCropper
+                ref=&quot;cropper&quot;
+                :img=&quot;option.img&quot;
+                :outputSize=&quot;option.size&quot;
+                :outputType=&quot;option.outputType&quot;
+                :info=&quot;true&quot;
+                :full=&quot;option.full&quot;
+                :canMove=&quot;option.canMove&quot;
+                :canMoveBox=&quot;option.canMoveBox&quot;
+                :original=&quot;option.original&quot;
+                :autoCrop=&quot;option.autoCrop&quot;
+                :fixed=&quot;option.fixed&quot;
+                :fixedNumber=&quot;option.fixedNumber&quot;
+                :centerBox=&quot;option.centerBox&quot;
+                :infoTrue=&quot;option.infoTrue&quot;
+                :fixedBox=&quot;option.fixedBox&quot;
+            &gt;&lt;/vueCropper&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;
+            &lt;el-button @click=&quot;cancel&quot;&gt;取 消&lt;/el-button&gt;
+            &lt;el-button type=&quot;primary&quot; @click=&quot;finish&quot; :loading=&quot;loading&quot;&gt;确认&lt;/el-button&gt;
+        &lt;/div&gt;
+        &lt;/el-dialog&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import axios from 'axios'
+import { VueCropper } from 'vue-cropper'
+import md5 from 'js-md5';
+import { postossImage } from '../../../api/index'
+    export default {
+        name:'cropper',
+        data() {
+            return {
+                // 裁剪组件的基础配置option
+                option: {
+                    img: '', // 裁剪图片的地址
+                    info: true, // 裁剪框的大小信息
+                    outputSize: 0.8, // 裁剪生成图片的质量
+                    outputType: 'jpeg', // 裁剪生成图片的格式
+                    canScale: true, // 图片是否允许滚轮缩放
+                    autoCrop: true, // 是否默认生成截图框
+                    autoCropWidth: 600, // 默认生成截图框宽度
+                    autoCropHeight: 300, // 默认生成截图框高度
+                    fixedBox: false, // 固定截图框大小 不允许改变
+                    fixed: false, // 是否开启截图框宽高固定比例
+                    fixedNumber: [7, 5], // 截图框的宽高比例
+                    full: true, // 是否输出原图比例的截图
+                    canMoveBox: true, // 截图框能否拖动
+                    original: true, // 上传图片按照原始比例渲染
+                    high: true,
+                    centerBox: true, // 截图框是否被限制在图片里面
+                    infoTrue: true // true 为展示真实输出图片宽高 false 展示看到的截图框宽高
+                },
+                picsList: [],  //页面显示的数组
+                // 防止重复提交
+                loading: false,
+                dialogVisible:false,        // 控制弹框的显示
+                fileinfo:[],      
+                RequestSource:'',           // oss直传源地址
+                baseurl:'',                 // 裁剪后的base64地址
+                isVictory:false,        // 识别用户是点否关闭
+            }
+        },
+        components:{VueCropper},
+        created() {
+            this.$on('is-Show',this.isShow);
+        },
+        methods:{
+            isShow(file){
+                this.fileinfo = file;
+                // 传递需要剪裁的地址 以弹框形式打开
+                this.$nextTick( () =&gt; {
+                    this.option.img = file.url;
+                    this.dialogVisible = true;
+                    this.handlePostSuccess(file.url);
+                })
+            },
+            // 关闭图片剪裁
+            cancel() {
+                this.dialogVisible = false;
+                // 点击取消时 去除已经回显的图片
+                this.$parent.dislodge(this.fileinfo);
+            },
+            // 确认剪裁后触发
+            finish() {
+                this.$refs.cropper.getCropData((data) =&gt; {
+                    this.baseurl = data;
+                    //将剪裁后base64的图片转化为file格式
+                    let file = this.convertBase64UrlToBlob(data)
+                    file.name = this.fileinfo.name
+                    &lt;!--let file = URL.createObjectURL(data).match(/[^blob:]+/g).join('');--&gt;
+                    this.Directpass(this.RequestSource,file).then( (res) =&gt; {
+                        if (res.status === 200) {
+                            this.$parent.handleSuccess({
+                                uid:this.fileinfo.uid,
+                                imgUrl:res.config.url.split('?')[0]
+                            });
+                            this.dialogVisible = false;
+                            this.isVictory = true;
+                            this.loading = true;
+                            this.$message('上传成功!');
+                            // 防止用户不上传图片 点击关闭时 不能及时删除回显的问题
+                            setTimeout(() =&gt; {
+                                this.isVictory = false;
+                            },1000)
+                        }
+                    })
+                    
+                })
+            },
+            // 上传服务主图
+            handlePostSuccess(file) {
+                postossImage({
+                    fileMd5:md5(file)
+                }).then( (res) =&gt; {
+                    this.RequestSource = res.data;
+                })
+            },
+            Directpass(url,file){
+                return new Promise( (resolve,reject) =&gt; {
+                axios.put(url,file,{headers:{&quot;x-oss-meta-author&quot;:&quot;deshe&quot;,&quot;Content-Type&quot;:&quot;application/octet-stream&quot;}}).then( (res) =&gt; {
+                    resolve(res)
+                })
+            })
+        },
+        // 将base64的图片转换为file文件
+        convertBase64UrlToBlob(urlData) {
+            let bytes = window.atob(urlData.split(',')[1]);//去掉url的头，并转换为byte
+            //处理异常,将ascii码小于0的转换为大于0
+            let ab = new ArrayBuffer(bytes.length);
+            let ia = new Uint8Array(ab);
+            for (var i = 0; i &lt; bytes.length; i++) {
+                ia[i] = bytes.charCodeAt(i);
+            }
+            return new Blob([ab], { type: 'image/jpeg' });
+        }
+    },
+    watch:{
+        dialogVisible() {
+            if (!this.dialogVisible &amp;&amp; !this.isVictory) {
+                this.loading = false
+                // 点击关闭时 去除已经回显的图片
+                this.$parent.dislodge(this.fileinfo);
+            } else {
+                this.loading = false;
+            }
+        }
+    }
+}
+&lt;/script&gt;
+
+&lt;style scoped lang=&quot;less&quot;&gt;
+.cropper-content {
+    .cropper {
+        width: auto;
+        height: 300px;
+    }
+}
+&lt;/style&gt;
+</code></pre>
+<h1 id="总结">总结：</h1>
+<p>在cropper.vue中主要起剪裁作用的是finish()方法以及convertBase64UrlToBlob()。 需要注意的是：剪切后的图片返回的是一串没有意义的字符串，传递到服务器无法识别，在这里我用了 this.$refs.cropper.getCropData() 把剪切的图片以base64的形式返回,接着把base64数据做一层处理，转化为Blob对象，里面存储着剪裁后图片的数据序列，接着把处理好的地址往服务器丢就搞定了。<br>
+还有就是： fixed设为false将不限剪裁的宽高</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wzhjm.vercel.app/post/币安智能链钱包配置/">
+                  <h3 class="post-title">
+                    币安智能链钱包配置
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

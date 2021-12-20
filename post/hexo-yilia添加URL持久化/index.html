@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>hexo+yilia添加URL持久化 | 淼淼博客</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967885576">
+<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="URL持久化
+
+我们可以发现hexo默认生成的文章地址路径是 【网站名称／年／月／日／文章名称】。比如这篇博客：
+http://localhost:4000/2021/12/16/hexo+yilia添加URL持久化
+这种链接对搜索爬虫是很..." />
+    <meta name="keywords" content="Hexo" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://wzhjm.vercel.app">
+        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967885576" class="site-logo">
+        <h1 class="site-title">淼淼博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/wzhjm" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      淼淼博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">hexo+yilia添加URL持久化</h2>
+            <div class="post-date">2021-12-16</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="url持久化">URL持久化</h1>
+<ul>
+<li>我们可以发现hexo默认生成的文章地址路径是 【网站名称／年／月／日／文章名称】。比如这篇博客：</li>
+<li>http://localhost:4000/2021/12/16/hexo+yilia添加URL持久化</li>
+<li>这种链接对搜索爬虫是很不友好的，第一它的url结构超过了三层，太深了。第二使用了中文路径。</li>
+<li>这样会导致一个问题，在某些聊天工具或分享链接的时候会造成url转码变成很长一串难以读写的链接。</li>
+<li>而且如果你的页面之前被收录或被转载后，当你再次编辑过后可能会造成之前的url失效带来不必要的404, 比如下面这样：</li>
+<li>http://localhost:4000/article/3328954643。别担心，我们有好办法来解决它。</li>
+</ul>
+<h1 id="第一种方式">第一种方式</h1>
+<p>打开_config.yml配置文件，找到permalink</p>
+<pre><code>#permalink: :year/:month/:day/:title/ 注释掉
+# 改为下面这样
+permalink:   /article/:title.html
+</code></pre>
+<p>上面这种方式是去掉了年月日，保持网站最多三层。</p>
+<h1 id="第二种方式推荐">第二种方式：(推荐)</h1>
+<p>安装 hexo-abbrlink插件：</p>
+<pre><code>npm install hexo-abbrlink --save
+</code></pre>
+<p>配置_config.yml，查找permalink，修改成这样：</p>
+<pre><code># permalink: :title/  将之前的注释掉
+permalink: article/:abbrlink.html
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: dec    # 进制：dec(default) and hex
+</code></pre>
+<p>安装后的网址：http://localhost:4000/article/3328954643.html</p>
+<p>注意：配置成功需要重新生成文件hexo clean,hexo g，不然会出现undefined的问题。</p>
+<h1 id="弊端">弊端</h1>
+<ul>
+<li>其实使用这个也有弊端：</li>
+<li>按照原格式，发布后，在github仓库中你能很清楚的看到你写博客的日期，因为是按照网址分文件夹的。使用该插件后就看不到了。</li>
+</ul>
+<h1 id="分类和标签路径名英文化">分类和标签路径名英文化</h1>
+<ul>
+<li>上面我们已经实现将文章的URL简短化和英文化了，但是如果我们的标签和分类有中文，这个插件是控制不了的，</li>
+<li>如有个生活的标签，该标签下的所有文章汇总如下：</li>
+<li>http://localhost:4000/tags/生活/，还是会出现中文。</li>
+<li>其实这个问题hexo官方自带解决方法。</li>
+<li>详见：https://hexo.io/zh-cn/docs/configuration.html#%E5%88%86%E7%B1%BB-amp-%E6%A0%87%E7%AD%BE</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://wzhjm.vercel.app/tag/6PxwREWPpM/" class="tag">
+                    Hexo
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wzhjm.vercel.app/post/hexo-yilia添加RSS订阅功能/">
+                  <h3 class="post-title">
+                    hexo+yilia添加RSS订阅功能
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
