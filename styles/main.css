@@ -414,32 +414,45 @@ a {
 }
 .post-item {
   display: flex;
-  padding-bottom: 32px;
-  margin-bottom: 32px;
-  border-bottom: 1px solid #ced4da;
+  margin: 30px;
 }
 .post-item:last-of-type {
   border-bottom: none;
 }
 .post-item .left {
   flex: 1;
+  position: relative;
+  background: #fff;
+  transition: all 0.2s ease-in;
+  min-height: 144px;
 }
-.post-item .left .post-title {
+.post-item .left .article-header {
+  border-left: 5px solid #4d4d4d;
+  padding-left: 2%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-item .left .article-header .post-title {
   font-size: 24px;
   transition: all 0.3s;
 }
-.post-item .left .post-title:hover {
+.post-item .left .article-header .post-title:hover {
   color: #212529;
 }
-.post-item .left .post-date {
+.post-item .left .article-header .post-date {
   font-size: 18px;
-  padding: 24px 0;
   color: #adb5bd;
+  margin-right: 2%;
 }
 .post-item .left .post-abstract {
   line-height: 24px;
   font-size: 18px;
   color: #868e96;
+}
+.post-item .left .tag-container {
+  padding-left: 2%;
 }
 .post-item .right {
   flex-shrink: 0;
@@ -618,16 +631,22 @@ a {
 }
 .next-post {
   border-top: 1px solid #ced4da;
-  border-bottom: 1px solid #ced4da;
   padding: 24px 0;
   margin: 32px 0;
+  display: flex;
+  justify-content: space-between;
 }
 .next-post .post-title {
   font-size: 24px;
 }
+.next-post .prev {
+  color: #ced4da;
+  margin-bottom: 16px;
+}
 .next-post .next {
   color: #ced4da;
   margin-bottom: 16px;
+  text-align: right;
 }
 .archives-title,
 .tag-list-title,
@@ -647,11 +666,28 @@ a {
   color: #868e96;
 }
 .archives-container .post {
-  padding-bottom: 16px;
+  margin-bottom: 16px;
+  min-height: 140px;
+  background: #fff;
+}
+.archives-container .post .article-header {
+  border-left: 5px solid #4d4d4d;
+  padding-left: 2%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.archives-container .post .tag-container {
+  padding-left: 2%;
 }
 .archives-container .post .post-title {
-  font-size: 18px;
+  font-size: 24px;
   transition: all 0.3s;
+}
+@media (max-width: 800px) {
+  .archives-container .post .post-title {
+    font-size: 16px;
+  }
 }
 .archives-container .post .post-title:hover {
   color: #212529;
@@ -677,7 +713,7 @@ a {
   .sidebar .top-header-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 16px;
+    align-items: center;
   }
   .sidebar .top-header-container .menu-btn {
     display: block;
@@ -715,6 +751,11 @@ a {
     text-align: left;
     padding: 0 16px;
   }
+  .sidebar .top-container .profilepic {
+    height: 60px;
+    width: 60px;
+    margin: 10px 0;
+  }
   .sidebar .top-container .site-title-container {
     display: flex;
     align-items: center;
@@ -737,14 +778,20 @@ a {
   .post-item {
     flex-direction: column-reverse;
     padding-bottom: 16px;
-    margin-bottom: 16x;
+    margin: 0;
   }
   .post-item .right {
     width: 100%;
     margin-left: 0;
     margin-bottom: 16px;
   }
-  .post-item .left .post-date {
+  .post-item .left .article-header {
+    display: block;
+  }
+  .post-item .left .article-header .post-title {
+    font-size: 16px;
+  }
+  .post-item .left .article-header .post-date {
     font-size: 16px;
     padding: 16px 0;
   }
@@ -756,7 +803,7 @@ a {
     transform: translateY(0px);
   }
   .post-detail .post-title {
-    font-size: 28px;
+    font-size: 16px;
   }
   .post-detail .post-date {
     font-size: 16px;
@@ -771,6 +818,11 @@ a {
   .next-post {
     margin: 24px 0;
     padding: 16px 0;
+    display: block;
+  }
+  .next-post .next {
+    text-align: left;
+    margin-top: 16px;
   }
   .archives-title,
   .tag-list-title,

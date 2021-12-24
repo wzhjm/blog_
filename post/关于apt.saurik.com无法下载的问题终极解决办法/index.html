@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+
+<head>
+  <meta charset="utf-8" >
 
 <title>关于apt.saurik.com无法下载的问题终极解决办法 | 黄金淼博客</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qqblog.vercel.app/favicon.ico?v=1640346979476">
+<link rel="shortcut icon" href="https://qqblog.vercel.app/favicon.ico?v=1640352131027">
 <link rel="stylesheet" href="https://qqblog.vercel.app/styles/main.css">
 
 
@@ -44,19 +45,20 @@
 
 
 
-    <meta name="description" content="cydia其实就是apt在iphone上的前端，安装过程无非就是通过apt下载软件，然后用dpkg安装，而apt则是用通过source list里的定义的源下载软件，既然网站可以直接访问，那就肯定是source list里定义的源有问题。
+  <meta name="description" content="cydia其实就是apt在iphone上的前端，安装过程无非就是通过apt下载软件，然后用dpkg安装，而apt则是用通过source list里的定义的源下载软件，既然网站可以直接访问，那就肯定是source list里定义的源有问题。
 ..." />
-    <meta name="keywords" content="越狱" />
-  </head>
-  <body>
-    <div id="app" class="main">
+  <meta name="keywords" content="越狱" />
+</head>
 
-      <!-- 左边导航栏 -->
+<body>
+  <div id="app" class="main">
+
+    <!-- 左边导航栏 -->
 <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="profilepic" href="/">
-        <img src="https://qqblog.vercel.app/images/avatar.png?v=1640346979476">
+        <img src="https://qqblog.vercel.app/images/avatar.png?v=1640352131027">
       </a>
       <h1 class="site-title">黄金淼博客</h1>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -119,14 +121,14 @@
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">关于apt.saurik.com无法下载的问题终极解决办法</h2>
-            <div class="post-date">2021-12-20</div>
-            
-            <div class="post-content" v-pre>
-              <p>cydia其实就是apt在iphone上的前端，安装过程无非就是通过apt下载软件，然后用dpkg安装，而apt则是用通过source list里的定义的源下载软件，既然网站可以直接访问，那就肯定是source list里定义的源有问题。<br>
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">关于apt.saurik.com无法下载的问题终极解决办法</h2>
+          <div class="post-date">2021-12-20</div>
+          
+          <div class="post-content" v-pre>
+            <p>cydia其实就是apt在iphone上的前端，安装过程无非就是通过apt下载软件，然后用dpkg安装，而apt则是用通过source list里的定义的源下载软件，既然网站可以直接访问，那就肯定是source list里定义的源有问题。<br>
 顺着这个思路查了一圈，没看出有什么问题，然后用人工方式模拟cydia更新软件的流程，一下就找到问题了。<br>
 apt.saurik.com本身是没有问题的，也没有被和谐，完全正常。出问题的是cache.saurik.com，更大的问题是，saurik的软件实际上正是放在cache.saurik.com上的，所以就不能正常下载安装了。</p>
 <h1 id="解决办法">解决办法</h1>
@@ -140,36 +142,60 @@ deb http://apt.saurik.com/cydia/ tangelo-3.7 main</p>
 <p>然后保存。<br>
 到cydia里，烦人host unreachable已经消失了。</p>
 
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://qqblog.vercel.app/tag/B0WAyVg3u/" class="tag">
+              越狱
+            </a>
+            
+          </div>
+          
+
+          
+          <div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyvOcNNI7",
+        conf: "e9b705e712dd74fe8bb51fb1084b12e0"
+    });
+</script>
+          
+
+          <div class="next-post">
+            <div>
+              
+              <div class="prev">上一篇</div>
+              <a href="https://qqblog.vercel.app/post/智能合约事件调用的5000区块限制解决方案/">
+                <h3 class="post-title">
+                  智能合约事件调用的5000区块限制解决方案
+                </h3>
+              </a>
+              
+            </div>
+            <div>
+              
+              <div class="next">下一篇</div>
+              <a href="https://qqblog.vercel.app/post/利用vue-cropper剪裁图片并上传/">
+                <h3 class="post-title">
+                  利用vue-cropper剪裁图片并上传
+                </h3>
+              </a>
             </div>
             
-              <div class="tag-container">
-                
-                  <a href="https://qqblog.vercel.app/tag/B0WAyVg3u/" class="tag">
-                    越狱
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://qqblog.vercel.app/post/利用vue-cropper剪裁图片并上传/">
-                  <h3 class="post-title">
-                    利用vue-cropper剪裁图片并上传
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
 
+          
+
         </div>
+
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="application/javascript">
 
 AOS.init();
@@ -193,5 +219,6 @@ var app = new Vue({
 
 
 
-  </body>
+</body>
+
 </html>

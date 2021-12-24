@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+
+<head>
+  <meta charset="utf-8" >
 
 <title>利用vue-cropper剪裁图片并上传 | 黄金淼博客</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qqblog.vercel.app/favicon.ico?v=1640346979476">
+<link rel="shortcut icon" href="https://qqblog.vercel.app/favicon.ico?v=1640352131027">
 <link rel="stylesheet" href="https://qqblog.vercel.app/styles/main.css">
 
 
@@ -44,7 +45,7 @@
 
 
 
-    <meta name="description" content="因为需求所以利用vue的插件vue-cropper进行图片剪裁。
+  <meta name="description" content="因为需求所以利用vue的插件vue-cropper进行图片剪裁。
 安装
 npm install vue-cropper
 使用
@@ -52,17 +53,18 @@ import VueCropper from vue-cropper
 效果图
 
 此次主要是利用Element-ui..." />
-    <meta name="keywords" content="" />
-  </head>
-  <body>
-    <div id="app" class="main">
+  <meta name="keywords" content="" />
+</head>
 
-      <!-- 左边导航栏 -->
+<body>
+  <div id="app" class="main">
+
+    <!-- 左边导航栏 -->
 <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="profilepic" href="/">
-        <img src="https://qqblog.vercel.app/images/avatar.png?v=1640346979476">
+        <img src="https://qqblog.vercel.app/images/avatar.png?v=1640352131027">
       </a>
       <h1 class="site-title">黄金淼博客</h1>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -125,14 +127,14 @@ import VueCropper from vue-cropper
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">利用vue-cropper剪裁图片并上传</h2>
-            <div class="post-date">2021-12-20</div>
-            
-            <div class="post-content" v-pre>
-              <p>因为需求所以利用vue的插件vue-cropper进行图片剪裁。</p>
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">利用vue-cropper剪裁图片并上传</h2>
+          <div class="post-date">2021-12-20</div>
+          
+          <div class="post-content" v-pre>
+            <p>因为需求所以利用vue的插件vue-cropper进行图片剪裁。</p>
 <h1 id="安装">安装</h1>
 <p><code>npm install vue-cropper</code></p>
 <h1 id="使用">使用</h1>
@@ -345,28 +347,52 @@ import { postossImage } from '../../../api/index'
 <p>在cropper.vue中主要起剪裁作用的是finish()方法以及convertBase64UrlToBlob()。 需要注意的是：剪切后的图片返回的是一串没有意义的字符串，传递到服务器无法识别，在这里我用了 this.$refs.cropper.getCropData() 把剪切的图片以base64的形式返回,接着把base64数据做一层处理，转化为Blob对象，里面存储着剪裁后图片的数据序列，接着把处理好的地址往服务器丢就搞定了。<br>
 还有就是： fixed设为false将不限剪裁的宽高</p>
 
+          </div>
+          
+
+          
+          <div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyvOcNNI7",
+        conf: "e9b705e712dd74fe8bb51fb1084b12e0"
+    });
+</script>
+          
+
+          <div class="next-post">
+            <div>
+              
+              <div class="prev">上一篇</div>
+              <a href="https://qqblog.vercel.app/post/关于apt.saurik.com无法下载的问题终极解决办法/">
+                <h3 class="post-title">
+                  关于apt.saurik.com无法下载的问题终极解决办法
+                </h3>
+              </a>
+              
+            </div>
+            <div>
+              
+              <div class="next">下一篇</div>
+              <a href="https://qqblog.vercel.app/post/币安智能链钱包配置/">
+                <h3 class="post-title">
+                  币安智能链钱包配置
+                </h3>
+              </a>
             </div>
             
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://qqblog.vercel.app/post/币安智能链钱包配置/">
-                  <h3 class="post-title">
-                    币安智能链钱包配置
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
 
+          
+
         </div>
+
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="application/javascript">
 
 AOS.init();
@@ -390,5 +416,6 @@ var app = new Vue({
 
 
 
-  </body>
+</body>
+
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+
+<head>
+  <meta charset="utf-8" >
 
 <title>flex布局 | 黄金淼博客</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qqblog.vercel.app/favicon.ico?v=1640346979476">
+<link rel="shortcut icon" href="https://qqblog.vercel.app/favicon.ico?v=1640352131027">
 <link rel="stylesheet" href="https://qqblog.vercel.app/styles/main.css">
 
 
@@ -44,7 +45,7 @@
 
 
 
-    <meta name="description" content="display: flex;
+  <meta name="description" content="display: flex;
 //垂直居中
 justify-content: center;
 //水平居中
@@ -53,17 +54,18 @@ align-items: center;
 flex-direction: column;
 
 ..." />
-    <meta name="keywords" content="Vue" />
-  </head>
-  <body>
-    <div id="app" class="main">
+  <meta name="keywords" content="Vue" />
+</head>
 
-      <!-- 左边导航栏 -->
+<body>
+  <div id="app" class="main">
+
+    <!-- 左边导航栏 -->
 <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="profilepic" href="/">
-        <img src="https://qqblog.vercel.app/images/avatar.png?v=1640346979476">
+        <img src="https://qqblog.vercel.app/images/avatar.png?v=1640352131027">
       </a>
       <h1 class="site-title">黄金淼博客</h1>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -126,14 +128,14 @@ flex-direction: column;
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">flex布局</h2>
-            <div class="post-date">2021-12-20</div>
-            
-            <div class="post-content" v-pre>
-              <pre><code class="language-html">display: flex;
+    <div class="main-container">
+      <div class="content-container" data-aos="fade-up">
+        <div class="post-detail">
+          <h2 class="post-title">flex布局</h2>
+          <div class="post-date">2021-12-20</div>
+          
+          <div class="post-content" v-pre>
+            <pre><code class="language-html">display: flex;
 //垂直居中
 justify-content: center;
 //水平居中
@@ -142,36 +144,60 @@ align-items: center;
 flex-direction: column;
 </code></pre>
 
+          </div>
+          
+          <div class="tag-container">
+            
+            <a href="https://qqblog.vercel.app/tag/-lmhJ7SZh/" class="tag">
+              Vue
+            </a>
+            
+          </div>
+          
+
+          
+          <div id="SOHUCS"></div>
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyvOcNNI7",
+        conf: "e9b705e712dd74fe8bb51fb1084b12e0"
+    });
+</script>
+          
+
+          <div class="next-post">
+            <div>
+              
+              <div class="prev">上一篇</div>
+              <a href="https://qqblog.vercel.app/post/币安智能链钱包配置/">
+                <h3 class="post-title">
+                  币安智能链钱包配置
+                </h3>
+              </a>
+              
+            </div>
+            <div>
+              
+              <div class="next">下一篇</div>
+              <a href="https://qqblog.vercel.app/post/ipfs-api/">
+                <h3 class="post-title">
+                  ipfs-api
+                </h3>
+              </a>
             </div>
             
-              <div class="tag-container">
-                
-                  <a href="https://qqblog.vercel.app/tag/-lmhJ7SZh/" class="tag">
-                    Vue
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://qqblog.vercel.app/post/ipfs-api/">
-                  <h3 class="post-title">
-                    ipfs-api
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
 
+          
+
         </div>
+
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="application/javascript">
 
 AOS.init();
@@ -195,5 +221,6 @@ var app = new Vue({
 
 
 
-  </body>
+</body>
+
 </html>
