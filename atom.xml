@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qqblog.vercel.app</id>
     <title>黄金淼博客</title>
-    <updated>2021-12-24T11:51:41.566Z</updated>
+    <updated>2021-12-24T11:56:23.735Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qqblog.vercel.app"/>
     <link rel="self" href="https://qqblog.vercel.app/atom.xml"/>
@@ -38,6 +38,27 @@
 });
 </code></pre>
 <p>我们通过获取区块号，并用变量代替fromBlovk和toBlock,进行循环遍历，拿出事件的记录，写到前端里面就可以了。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于apt.saurik.com无法下载的问题终极解决办法]]></title>
+        <id>https://qqblog.vercel.app/post/关于apt.saurik.com无法下载的问题终极解决办法/</id>
+        <link href="https://qqblog.vercel.app/post/关于apt.saurik.com无法下载的问题终极解决办法/">
+        </link>
+        <updated>2021-12-20T05:45:51.000Z</updated>
+        <content type="html"><![CDATA[<p>cydia其实就是apt在iphone上的前端，安装过程无非就是通过apt下载软件，然后用dpkg安装，而apt则是用通过source list里的定义的源下载软件，既然网站可以直接访问，那就肯定是source list里定义的源有问题。<br>
+顺着这个思路查了一圈，没看出有什么问题，然后用人工方式模拟cydia更新软件的流程，一下就找到问题了。<br>
+apt.saurik.com本身是没有问题的，也没有被和谐，完全正常。出问题的是cache.saurik.com，更大的问题是，saurik的软件实际上正是放在cache.saurik.com上的，所以就不能正常下载安装了。</p>
+<h1 id="解决办法">解决办法</h1>
+<p>所幸的是，apt.saurik.com提供了另一个可以替代cache.saurik.com的源：apt.saurik.com/cydia<br>
+只要修改一下apt的source list即可解决问题。</p>
+<p>打开iphone的/etc/apt/souces.list.d/saurik.list<br>
+编辑：<br>
+deb http://apt.saurik.com/ tangelo-3.7 main</p>
+<p>改为：<br>
+deb http://apt.saurik.com/cydia/ tangelo-3.7 main</p>
+<p>然后保存。<br>
+到cydia里，烦人host unreachable已经消失了。</p>
 ]]></content>
     </entry>
     <entry>
@@ -582,56 +603,6 @@ white-space: nowrap;
 </code></pre>
 <h1 id="结果展示如图">结果展示如图</h1>
 <figure data-type="image" tabindex="1"><img src="https://qqblog.vercel.app/post-images/1639966517978.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[hexo+yilia添加URL持久化]]></title>
-        <id>https://qqblog.vercel.app/post/hexo-yilia添加URL持久化/</id>
-        <link href="https://qqblog.vercel.app/post/hexo-yilia添加URL持久化/">
-        </link>
-        <updated>2021-12-16T05:21:28.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="url持久化">URL持久化</h1>
-<ul>
-<li>我们可以发现hexo默认生成的文章地址路径是 【网站名称／年／月／日／文章名称】。比如这篇博客：</li>
-<li>http://localhost:4000/2021/12/16/hexo+yilia添加URL持久化</li>
-<li>这种链接对搜索爬虫是很不友好的，第一它的url结构超过了三层，太深了。第二使用了中文路径。</li>
-<li>这样会导致一个问题，在某些聊天工具或分享链接的时候会造成url转码变成很长一串难以读写的链接。</li>
-<li>而且如果你的页面之前被收录或被转载后，当你再次编辑过后可能会造成之前的url失效带来不必要的404, 比如下面这样：</li>
-<li>http://localhost:4000/article/3328954643。别担心，我们有好办法来解决它。</li>
-</ul>
-<h1 id="第一种方式">第一种方式</h1>
-<p>打开_config.yml配置文件，找到permalink</p>
-<pre><code>#permalink: :year/:month/:day/:title/ 注释掉
-# 改为下面这样
-permalink:   /article/:title.html
-</code></pre>
-<p>上面这种方式是去掉了年月日，保持网站最多三层。</p>
-<h1 id="第二种方式推荐">第二种方式：(推荐)</h1>
-<p>安装 hexo-abbrlink插件：</p>
-<pre><code>npm install hexo-abbrlink --save
-</code></pre>
-<p>配置_config.yml，查找permalink，修改成这样：</p>
-<pre><code># permalink: :title/  将之前的注释掉
-permalink: article/:abbrlink.html
-abbrlink:
-  alg: crc32  # 算法：crc16(default) and crc32
-  rep: dec    # 进制：dec(default) and hex
-</code></pre>
-<p>安装后的网址：http://localhost:4000/article/3328954643.html</p>
-<p>注意：配置成功需要重新生成文件hexo clean,hexo g，不然会出现undefined的问题。</p>
-<h1 id="弊端">弊端</h1>
-<ul>
-<li>其实使用这个也有弊端：</li>
-<li>按照原格式，发布后，在github仓库中你能很清楚的看到你写博客的日期，因为是按照网址分文件夹的。使用该插件后就看不到了。</li>
-</ul>
-<h1 id="分类和标签路径名英文化">分类和标签路径名英文化</h1>
-<ul>
-<li>上面我们已经实现将文章的URL简短化和英文化了，但是如果我们的标签和分类有中文，这个插件是控制不了的，</li>
-<li>如有个生活的标签，该标签下的所有文章汇总如下：</li>
-<li>http://localhost:4000/tags/生活/，还是会出现中文。</li>
-<li>其实这个问题hexo官方自带解决方法。</li>
-<li>详见：https://hexo.io/zh-cn/docs/configuration.html#%E5%88%86%E7%B1%BB-amp-%E6%A0%87%E7%AD%BE</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
