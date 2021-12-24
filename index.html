@@ -1,3 +1,4 @@
+<!-- 首页右侧 -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,13 +9,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967957092">
-<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+<link rel="shortcut icon" href="https://blog.vercel.app/favicon.ico?v=1640346370172">
+<link rel="stylesheet" href="https://blog.vercel.app/styles/main.css">
+
+
 
 
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+  <script src="https://blog.vercel.app/media/lib/clickLove.js "></script>
+
+
+
+<script>
+  /* 标签页标题切换 */
+  var originTitle = document.title;
+  var titleTime;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      clearTimeout(titleTime);
+    } else {
+      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      titleTime = setTimeout(function () {
+        document.title = originTitle;
+      }, 2000);
+    }
+  });
+</script>
+
+
 
 
 
@@ -26,13 +53,14 @@
   <body>
     <div id="app" class="main">
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+      <!-- 左边导航栏 -->
+<div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
-      <a class="site-title-container" href="https://wzhjm.vercel.app">
-        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967957092" class="site-logo">
-        <h1 class="site-title">淼淼博客</h1>
+      <a class="profilepic" href="/">
+        <img src="https://blog.vercel.app/images/avatar.png?v=1640346370172">
       </a>
+      <h1 class="site-title">淼淼博客</h1>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
         <div class="line"></div>
       </div>
@@ -87,7 +115,7 @@
       淼淼博客
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://blog.vercel.app/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
@@ -98,7 +126,22 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/li-yong-vue-cropper-jian-cai-tu-pian-bing-shang-chuan/">
+                <a href="https://blog.vercel.app/post/智能合约事件调用的5000区块限制解决方案/">
+                  <h2 class="post-title">智能合约事件调用的5000区块限制解决方案</h2>
+                </a>
+                <div class="post-date">
+                  2021-12-24
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://blog.vercel.app/post/利用vue-cropper剪裁图片并上传/">
                   <h2 class="post-title">利用vue-cropper剪裁图片并上传</h2>
                 </a>
                 <div class="post-date">
@@ -113,7 +156,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/币安智能链钱包配置/">
+                <a href="https://blog.vercel.app/post/币安智能链钱包配置/">
                   <h2 class="post-title">币安智能链钱包配置</h2>
                 </a>
                 <div class="post-date">
@@ -128,7 +171,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/flex布局/">
+                <a href="https://blog.vercel.app/post/flex布局/">
                   <h2 class="post-title">flex布局</h2>
                 </a>
                 <div class="post-date">
@@ -143,7 +186,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/ipfs-api/">
+                <a href="https://blog.vercel.app/post/ipfs-api/">
                   <h2 class="post-title">ipfs-api</h2>
                 </a>
                 <div class="post-date">
@@ -158,7 +201,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/git操作/">
+                <a href="https://blog.vercel.app/post/git操作/">
                   <h2 class="post-title">git操作</h2>
                 </a>
                 <div class="post-date">
@@ -173,7 +216,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/是否换行/">
+                <a href="https://blog.vercel.app/post/是否换行/">
                   <h2 class="post-title">是否换行</h2>
                 </a>
                 <div class="post-date">
@@ -188,7 +231,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/解决Hexo图片无法显示问题/">
+                <a href="https://blog.vercel.app/post/解决Hexo图片无法显示问题/">
                   <h2 class="post-title">解决Hexo图片无法显示问题</h2>
                 </a>
                 <div class="post-date">
@@ -203,7 +246,7 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/hexo-yilia添加复制代码块功能/">
+                <a href="https://blog.vercel.app/post/hexo-yilia添加复制代码块功能/">
                   <h2 class="post-title">hexo+yilia添加复制代码块功能</h2>
                 </a>
                 <div class="post-date">
@@ -218,23 +261,8 @@
           
             <article class="post-item">
               <div class="left">
-                <a href="https://wzhjm.vercel.app/post/hexo-yilia添加URL持久化/">
+                <a href="https://blog.vercel.app/post/hexo-yilia添加URL持久化/">
                   <h2 class="post-title">hexo+yilia添加URL持久化</h2>
-                </a>
-                <div class="post-date">
-                  2021-12-16
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://wzhjm.vercel.app/post/hexo-yilia添加RSS订阅功能/">
-                  <h2 class="post-title">hexo+yilia添加RSS订阅功能</h2>
                 </a>
                 <div class="post-date">
                   2021-12-16
@@ -250,7 +278,7 @@
           <div class="pagination-container">
   
   
-    <a href="https://wzhjm.vercel.app/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+    <a href="https://blog.vercel.app/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
   
 </div>
 

@@ -1,19 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://wzhjm.vercel.app</id>
+    <id>https://blog.vercel.app</id>
     <title>淼淼博客</title>
-    <updated>2021-12-20T02:39:21.062Z</updated>
+    <updated>2021-12-24T11:46:12.498Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://wzhjm.vercel.app"/>
-    <link rel="self" href="https://wzhjm.vercel.app/atom.xml"/>
+    <link rel="alternate" href="https://blog.vercel.app"/>
+    <link rel="self" href="https://blog.vercel.app/atom.xml"/>
     <subtitle>淼淼博客</subtitle>
-    <logo>https://wzhjm.vercel.app/images/avatar.png</logo>
-    <icon>https://wzhjm.vercel.app/favicon.ico</icon>
+    <logo>https://blog.vercel.app/images/avatar.png</logo>
+    <icon>https://blog.vercel.app/favicon.ico</icon>
     <rights>All rights reserved 2021, 淼淼博客</rights>
     <entry>
+        <title type="html"><![CDATA[智能合约事件调用的5000区块限制解决方案]]></title>
+        <id>https://blog.vercel.app/post/智能合约事件调用的5000区块限制解决方案/</id>
+        <link href="https://blog.vercel.app/post/智能合约事件调用的5000区块限制解决方案/">
+        </link>
+        <updated>2021-12-24T11:42:58.000Z</updated>
+        <content type="html"><![CDATA[<p>首先这是个很简单的方案，只是最近困扰了一段时间，所以写篇专门的文章。</p>
+<p>上代码...</p>
+<pre><code>mycontract.getPastEvents('myEvent', {filter: {}, fromBlock: 0, toBlock: &quot;latest&quot;});
+</code></pre>
+<p>这是web3调用事件的方法，我相信在看这个方法的朋友一定疑问且开心 。“这能从第0个区块直接查到最新的区块？”</p>
+<p>事实在不同的节点的RPC，他们的通常会限制你查的区块大小，metamask是5000区块，这也好理解，毕竟从0到最新区块所帅选的数据量比较大。</p>
+<p>我们在开发时或多或少会遇到调用以段时间的事件记录，打个比方，我写个DAPP，要调用用户这段时在我的DAPP上的各项资金流动记录，5000个区块显然不够，解决方案就是循环调用...这么一说估计很容易理解。</p>
+<pre><code>web3js.eth.getBlockNumber(function(error, result){
+	var _from = result - 890000;
+        var _to = _from + 5000;
+	for(var i = 0; i &lt; 180; i++){
+	    mycontrack.getPastEvents('myEvent', {filter: {}, fromBlock: _from, toBlock: _to}).then((res) =&gt; {
+            for(var m = 0;m &lt;res.length;m++){
+	          //拿出数据记录
+	     }
+        });
+	_to += 5000;
+	_from += 5000;
+	}	
+});
+</code></pre>
+<p>我们通过获取区块号，并用变量代替fromBlovk和toBlock,进行循环遍历，拿出事件的记录，写到前端里面就可以了。</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[利用vue-cropper剪裁图片并上传]]></title>
-        <id>https://wzhjm.vercel.app/post/li-yong-vue-cropper-jian-cai-tu-pian-bing-shang-chuan/</id>
-        <link href="https://wzhjm.vercel.app/post/li-yong-vue-cropper-jian-cai-tu-pian-bing-shang-chuan/">
+        <id>https://blog.vercel.app/post/利用vue-cropper剪裁图片并上传/</id>
+        <link href="https://blog.vercel.app/post/利用vue-cropper剪裁图片并上传/">
         </link>
         <updated>2021-12-20T02:12:56.000Z</updated>
         <content type="html"><![CDATA[<p>因为需求所以利用vue的插件vue-cropper进行图片剪裁。</p>
@@ -22,7 +52,7 @@
 <h1 id="使用">使用</h1>
 <p><code>import VueCropper from vue-cropper</code></p>
 <h1 id="效果图">效果图</h1>
-<figure data-type="image" tabindex="1"><img src="https://wzhjm.vercel.app/post-images/1639966410263.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://blog.vercel.app/post-images/1639966410263.png" alt="" loading="lazy"></figure>
 <p>此次主要是利用Element-ui+vue-cropper完成此需求,话不多说上代码。</p>
 <pre><code>&lt;div&gt;
     &lt;el-upload
@@ -232,8 +262,8 @@ import { postossImage } from '../../../api/index'
     </entry>
     <entry>
         <title type="html"><![CDATA[币安智能链钱包配置]]></title>
-        <id>https://wzhjm.vercel.app/post/币安智能链钱包配置/</id>
-        <link href="https://wzhjm.vercel.app/post/币安智能链钱包配置/">
+        <id>https://blog.vercel.app/post/币安智能链钱包配置/</id>
+        <link href="https://blog.vercel.app/post/币安智能链钱包配置/">
         </link>
         <updated>2021-12-20T02:05:43.000Z</updated>
         <content type="html"><![CDATA[<h1 id="metamask-配置">metamask 配置</h1>
@@ -270,8 +300,8 @@ import { postossImage } from '../../../api/index'
     </entry>
     <entry>
         <title type="html"><![CDATA[flex布局]]></title>
-        <id>https://wzhjm.vercel.app/post/flex布局/</id>
-        <link href="https://wzhjm.vercel.app/post/flex布局/">
+        <id>https://blog.vercel.app/post/flex布局/</id>
+        <link href="https://blog.vercel.app/post/flex布局/">
         </link>
         <updated>2021-12-20T02:05:40.000Z</updated>
         <content type="html"><![CDATA[<pre><code class="language-html">display: flex;
@@ -286,8 +316,8 @@ flex-direction: column;
     </entry>
     <entry>
         <title type="html"><![CDATA[ipfs-api]]></title>
-        <id>https://wzhjm.vercel.app/post/ipfs-api/</id>
-        <link href="https://wzhjm.vercel.app/post/ipfs-api/">
+        <id>https://blog.vercel.app/post/ipfs-api/</id>
+        <link href="https://blog.vercel.app/post/ipfs-api/">
         </link>
         <updated>2021-12-20T02:05:38.000Z</updated>
         <content type="html"><![CDATA[<pre><code>&lt;template&gt;
@@ -361,8 +391,8 @@ a {
     </entry>
     <entry>
         <title type="html"><![CDATA[git操作]]></title>
-        <id>https://wzhjm.vercel.app/post/git操作/</id>
-        <link href="https://wzhjm.vercel.app/post/git操作/">
+        <id>https://blog.vercel.app/post/git操作/</id>
+        <link href="https://blog.vercel.app/post/git操作/">
         </link>
         <updated>2021-12-20T02:05:31.000Z</updated>
         <content type="html"><![CDATA[<h1 id="准备配置">准备配置</h1>
@@ -429,8 +459,8 @@ $ git push origin maste</li>
     </entry>
     <entry>
         <title type="html"><![CDATA[是否换行]]></title>
-        <id>https://wzhjm.vercel.app/post/是否换行/</id>
-        <link href="https://wzhjm.vercel.app/post/是否换行/">
+        <id>https://blog.vercel.app/post/是否换行/</id>
+        <link href="https://blog.vercel.app/post/是否换行/">
         </link>
         <updated>2021-12-20T02:05:28.000Z</updated>
         <content type="html"><![CDATA[<pre><code>//换行
@@ -442,8 +472,8 @@ white-space: nowrap;
     </entry>
     <entry>
         <title type="html"><![CDATA[解决Hexo图片无法显示问题]]></title>
-        <id>https://wzhjm.vercel.app/post/解决Hexo图片无法显示问题/</id>
-        <link href="https://wzhjm.vercel.app/post/解决Hexo图片无法显示问题/">
+        <id>https://blog.vercel.app/post/解决Hexo图片无法显示问题/</id>
+        <link href="https://blog.vercel.app/post/解决Hexo图片无法显示问题/">
         </link>
         <updated>2021-12-20T02:05:26.000Z</updated>
         <content type="html"><![CDATA[<p>版本：Hexo 3以上</p>
@@ -469,8 +499,8 @@ white-space: nowrap;
     </entry>
     <entry>
         <title type="html"><![CDATA[hexo+yilia添加复制代码块功能]]></title>
-        <id>https://wzhjm.vercel.app/post/hexo-yilia添加复制代码块功能/</id>
-        <link href="https://wzhjm.vercel.app/post/hexo-yilia添加复制代码块功能/">
+        <id>https://blog.vercel.app/post/hexo-yilia添加复制代码块功能/</id>
+        <link href="https://blog.vercel.app/post/hexo-yilia添加复制代码块功能/">
         </link>
         <updated>2021-12-16T05:45:51.000Z</updated>
         <content type="html"><![CDATA[<h1 id="第一步">第一步</h1>
@@ -551,13 +581,13 @@ white-space: nowrap;
 }
 </code></pre>
 <h1 id="结果展示如图">结果展示如图</h1>
-<figure data-type="image" tabindex="1"><img src="https://wzhjm.vercel.app/post-images/1639966517978.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://blog.vercel.app/post-images/1639966517978.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[hexo+yilia添加URL持久化]]></title>
-        <id>https://wzhjm.vercel.app/post/hexo-yilia添加URL持久化/</id>
-        <link href="https://wzhjm.vercel.app/post/hexo-yilia添加URL持久化/">
+        <id>https://blog.vercel.app/post/hexo-yilia添加URL持久化/</id>
+        <link href="https://blog.vercel.app/post/hexo-yilia添加URL持久化/">
         </link>
         <updated>2021-12-16T05:21:28.000Z</updated>
         <content type="html"><![CDATA[<h1 id="url持久化">URL持久化</h1>
@@ -602,35 +632,6 @@ abbrlink:
 <li>其实这个问题hexo官方自带解决方法。</li>
 <li>详见：https://hexo.io/zh-cn/docs/configuration.html#%E5%88%86%E7%B1%BB-amp-%E6%A0%87%E7%AD%BE</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[hexo+yilia添加RSS订阅功能]]></title>
-        <id>https://wzhjm.vercel.app/post/hexo-yilia添加RSS订阅功能/</id>
-        <link href="https://wzhjm.vercel.app/post/hexo-yilia添加RSS订阅功能/">
-        </link>
-        <updated>2021-12-16T05:12:31.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="先安装插件">先安装插件</h1>
-<pre><code>npm install hexo-generator-feed
-</code></pre>
-<h1 id="在hexo根目录配置文件_configyml中配置插件">在hexo根目录配置文件_config.yml中配置插件</h1>
-<pre><code># Extensions
-plugins:
-  hexo-generator-feed
-#Feed Atom
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20 # 最新的20篇文章
-</code></pre>
-<h1 id="开启主题的左侧边栏的rss功能">开启主题的左侧边栏的RSS功能</h1>
-<p>在主题的配置文件theme/yilia/_config.yml中进行设置:</p>
-<pre><code># SubNav
-subnav:
-  rss: &quot;atom.xml&quot; 
-</code></pre>
-<h1 id="重新生成文件">重新生成文件</h1>
-<p>hexo clean, hexo g后会在public目录下生成auto.xml订阅文件，到浏览器进行访问，点击图标会跳转到*/auto.xml界面，显示最近的几篇文章的更新。</p>
 ]]></content>
     </entry>
 </feed>

@@ -8,13 +8,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://wzhjm.vercel.app/favicon.ico?v=1639967957092">
-<link rel="stylesheet" href="https://wzhjm.vercel.app/styles/main.css">
+<link rel="shortcut icon" href="https://blog.vercel.app/favicon.ico?v=1640346370172">
+<link rel="stylesheet" href="https://blog.vercel.app/styles/main.css">
+
+
 
 
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+  <script src="https://blog.vercel.app/media/lib/clickLove.js "></script>
+
+
+
+<script>
+  /* 标签页标题切换 */
+  var originTitle = document.title;
+  var titleTime;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      clearTimeout(titleTime);
+    } else {
+      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      titleTime = setTimeout(function () {
+        document.title = originTitle;
+      }, 2000);
+    }
+  });
+</script>
+
+
 
 
 
@@ -27,13 +53,14 @@ $ git init # （建立本地git仓库）——注意：此指令本地源码根�
   <body>
     <div id="app" class="main">
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+      <!-- 左边导航栏 -->
+<div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
-      <a class="site-title-container" href="https://wzhjm.vercel.app">
-        <img src="https://wzhjm.vercel.app/images/avatar.png?v=1639967957092" class="site-logo">
-        <h1 class="site-title">淼淼博客</h1>
+      <a class="profilepic" href="/">
+        <img src="https://blog.vercel.app/images/avatar.png?v=1640346370172">
       </a>
+      <h1 class="site-title">淼淼博客</h1>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
         <div class="line"></div>
       </div>
@@ -88,7 +115,7 @@ $ git init # （建立本地git仓库）——注意：此指令本地源码根�
       淼淼博客
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://wzhjm.vercel.app/atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/wzhjm" target="_blank">wzhjm</a> | <a class="rss" href="https://blog.vercel.app/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
@@ -166,7 +193,7 @@ $ git push origin maste</li>
             
               <div class="tag-container">
                 
-                  <a href="https://wzhjm.vercel.app/tag/2jkaWIQ0qi/" class="tag">
+                  <a href="https://blog.vercel.app/tag/2jkaWIQ0qi/" class="tag">
                     Git
                   </a>
                 
@@ -175,7 +202,7 @@ $ git push origin maste</li>
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://wzhjm.vercel.app/post/是否换行/">
+                <a href="https://blog.vercel.app/post/是否换行/">
                   <h3 class="post-title">
                     是否换行
                   </h3>

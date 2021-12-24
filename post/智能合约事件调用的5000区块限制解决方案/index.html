@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Hexo | 淼淼博客</title>
+<title>智能合约事件调用的5000区块限制解决方案 | 淼淼博客</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -44,7 +44,10 @@
 
 
 
-    <meta name="description" content="淼淼博客">
+    <meta name="description" content="首先这是个很简单的方案，只是最近困扰了一段时间，所以写篇专门的文章。
+上代码...
+mycontract.getPastEvents('myEvent', {filter: {}, fromBlock: 0, toBlock: &quot;..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -119,88 +122,50 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: Hexo</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://blog.vercel.app/post/解决Hexo图片无法显示问题/">
-                  <h2 class="post-title">解决Hexo图片无法显示问题</h2>
-                </a>
-                <div class="post-date">
-                  2021-12-20
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://blog.vercel.app/post/hexo-yilia添加复制代码块功能/">
-                  <h2 class="post-title">hexo+yilia添加复制代码块功能</h2>
-                </a>
-                <div class="post-date">
-                  2021-12-16
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://blog.vercel.app/post/hexo-yilia添加URL持久化/">
-                  <h2 class="post-title">hexo+yilia添加URL持久化</h2>
-                </a>
-                <div class="post-date">
-                  2021-12-16
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://blog.vercel.app/post/hexo-yilia添加RSS订阅功能/">
-                  <h2 class="post-title">hexo+yilia添加RSS订阅功能</h2>
-                </a>
-                <div class="post-date">
-                  2021-12-16
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://blog.vercel.app/post/Hexo使用和Markdown语法笔记/">
-                  <h2 class="post-title">Hexo使用和Markdown语法笔记</h2>
-                </a>
-                <div class="post-date">
-                  2021-12-15
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">智能合约事件调用的5000区块限制解决方案</h2>
+            <div class="post-date">2021-12-24</div>
+            
+            <div class="post-content" v-pre>
+              <p>首先这是个很简单的方案，只是最近困扰了一段时间，所以写篇专门的文章。</p>
+<p>上代码...</p>
+<pre><code>mycontract.getPastEvents('myEvent', {filter: {}, fromBlock: 0, toBlock: &quot;latest&quot;});
+</code></pre>
+<p>这是web3调用事件的方法，我相信在看这个方法的朋友一定疑问且开心 。“这能从第0个区块直接查到最新的区块？”</p>
+<p>事实在不同的节点的RPC，他们的通常会限制你查的区块大小，metamask是5000区块，这也好理解，毕竟从0到最新区块所帅选的数据量比较大。</p>
+<p>我们在开发时或多或少会遇到调用以段时间的事件记录，打个比方，我写个DAPP，要调用用户这段时在我的DAPP上的各项资金流动记录，5000个区块显然不够，解决方案就是循环调用...这么一说估计很容易理解。</p>
+<pre><code>web3js.eth.getBlockNumber(function(error, result){
+	var _from = result - 890000;
+        var _to = _from + 5000;
+	for(var i = 0; i &lt; 180; i++){
+	    mycontrack.getPastEvents('myEvent', {filter: {}, fromBlock: _from, toBlock: _to}).then((res) =&gt; {
+            for(var m = 0;m &lt;res.length;m++){
+	          //拿出数据记录
+	     }
+        });
+	_to += 5000;
+	_from += 5000;
+	}	
+});
+</code></pre>
+<p>我们通过获取区块号，并用变量代替fromBlovk和toBlock,进行循环遍历，拿出事件的记录，写到前端里面就可以了。</p>
 
-          <div class="pagination-container">
-  
-  
-</div>
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://blog.vercel.app/post/利用vue-cropper剪裁图片并上传/">
+                  <h3 class="post-title">
+                    利用vue-cropper剪裁图片并上传
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
 
         </div>
       </div>
