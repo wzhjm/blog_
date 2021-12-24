@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qqblog.vercel.app</id>
-    <title>淼淼博客</title>
-    <updated>2021-12-24T11:50:47.204Z</updated>
+    <title>黄金淼博客</title>
+    <updated>2021-12-24T11:51:41.566Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qqblog.vercel.app"/>
     <link rel="self" href="https://qqblog.vercel.app/atom.xml"/>
-    <subtitle>淼淼博客</subtitle>
+    <subtitle>黄金淼博客</subtitle>
     <logo>https://qqblog.vercel.app/images/avatar.png</logo>
     <icon>https://qqblog.vercel.app/favicon.ico</icon>
-    <rights>All rights reserved 2021, 淼淼博客</rights>
+    <rights>All rights reserved 2021, 黄金淼博客</rights>
     <entry>
         <title type="html"><![CDATA[智能合约事件调用的5000区块限制解决方案]]></title>
         <id>https://qqblog.vercel.app/post/智能合约事件调用的5000区块限制解决方案/</id>
